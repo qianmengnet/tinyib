@@ -1175,6 +1175,7 @@ EOF;
 function manageModerateAll($post_ids, $threads, $replies, $ips) {
 	global $isadmin;
 	$txt_moderate = sprintf(__('Moderate %d posts'), count($post_ids));
+	$txt_delete_and_ban_all = __('Delete and ban all');
 	$txt_delete_all = __('Delete all');
 	$txt_ban_all = __('Ban all');
 	if ($threads == 1 && $replies == 1) {
@@ -1206,6 +1207,18 @@ function manageModerateAll($post_ids, $threads, $replies, $ips) {
 <fieldset>
 <legend>$txt_moderate</legend>
 <table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tr><td>
+&nbsp;
+</td><td valign="top">
+
+<form method="get" action="?">
+<input type="hidden" name="manage" value="">
+<input type="hidden" name="bans" value="{$ips_comma}">
+<input type="hidden" name="deleteposts" value="{$post_ids_quoted}">
+<input type="submit" value="$txt_delete_and_ban_all" class="managebutton">
+</form>
+
+</td><td>&nbsp;</td></tr>
 <tr><td>
 &nbsp;
 </td><td valign="top">
@@ -1302,6 +1315,7 @@ EOF;
 
 	$txt_moderating = sprintf(__('Moderating No.%d'), $post['id']);
 	$txt_action = __('Action');
+	$txt_delete_and_ban = __('Delete and ban');
 	if ($post['parent'] == TINYIB_NEWTHREAD) {
 		$txt_delete = __('Delete thread');
 	} else {
@@ -1326,6 +1340,7 @@ EOF;
 </td><td><small>$report_info</small></td></tr>
 EOF;
 	}
+	$ip = htmlentities($post['ip'], ENT_QUOTES);
 	return <<<EOF
 	<fieldset>
 	<legend>$txt_moderating</legend>
@@ -1344,6 +1359,16 @@ EOF;
 	<legend>$txt_action</legend>
 	
 	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr><td>
+	
+	<form method="get" action="?">
+	<input type="hidden" name="manage" value="">
+	<input type="hidden" name="bans" value="$ip">
+	<input type="hidden" name="deleteposts" value="${post['id']}">
+	<input type="submit" value="$txt_delete_and_ban" class="managebutton">
+	</form>
+	
+	</td><td>&nbsp;</td></tr>
 	<tr><td>
 	
 	<form method="get" action="?">
