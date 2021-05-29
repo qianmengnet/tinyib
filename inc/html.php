@@ -1213,18 +1213,6 @@ function manageModerateAll($post_ids, $threads, $replies, $ips) {
 
 <form method="get" action="?">
 <input type="hidden" name="manage" value="">
-<input type="hidden" name="bans" value="{$ips_comma}">
-<input type="hidden" name="deleteposts" value="{$post_ids_quoted}">
-<input type="submit" value="$txt_delete_and_ban_all" class="managebutton">
-</form>
-
-</td><td>&nbsp;</td></tr>
-<tr><td>
-&nbsp;
-</td><td valign="top">
-
-<form method="get" action="?">
-<input type="hidden" name="manage" value="">
 <input type="hidden" name="delete" value="{$post_ids_quoted}">
 <input type="submit" value="$txt_delete_all" class="managebutton">
 </form>
@@ -1241,6 +1229,18 @@ function manageModerateAll($post_ids, $threads, $replies, $ips) {
 </form>
 
 </td><td><small>$ban_info</small></td></tr>
+<tr><td>
+&nbsp;
+</td><td valign="top">
+
+<form method="get" action="?">
+<input type="hidden" name="manage" value="">
+<input type="hidden" name="bans" value="{$ips_comma}">
+<input type="hidden" name="deleteposts" value="{$post_ids_quoted}">
+<input type="submit" value="$txt_delete_and_ban_all" class="managebutton">
+</form>
+
+</td><td>&nbsp;</td></tr>
 </table>
 </fieldset>
 
@@ -1363,16 +1363,6 @@ EOF;
 	
 	<form method="get" action="?">
 	<input type="hidden" name="manage" value="">
-	<input type="hidden" name="bans" value="$ip">
-	<input type="hidden" name="deleteposts" value="${post['id']}">
-	<input type="submit" value="$txt_delete_and_ban" class="managebutton">
-	</form>
-	
-	</td><td>&nbsp;</td></tr>
-	<tr><td>
-	
-	<form method="get" action="?">
-	<input type="hidden" name="manage" value="">
 	<input type="hidden" name="delete" value="${post['id']}">
 	<input type="submit" value="$txt_delete" class="managebutton">
 	</form>
@@ -1387,6 +1377,16 @@ EOF;
 	</form>
 	
 	</td><td><small>$ban_info</small></td></tr>
+	<tr><td>
+	
+	<form method="get" action="?">
+	<input type="hidden" name="manage" value="">
+	<input type="hidden" name="bans" value="$ip">
+	<input type="hidden" name="deleteposts" value="${post['id']}">
+	<input type="submit" value="$txt_delete_and_ban" class="managebutton">
+	</form>
+	
+	</td><td>&nbsp;</td></tr>
 
 	$sticky_html
 	
