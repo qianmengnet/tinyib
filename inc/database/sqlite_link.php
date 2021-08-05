@@ -11,6 +11,12 @@ if (!$db = sqlite_open(TINYIB_DBPATH, 0666, $error)) {
 	fancyDie("Could not connect to database: " . $error);
 }
 
+// Set lock timeout
+sqlite_busy_timeout($db, 60000);
+
+// Set journal mode to write-ahead logging
+sqlite_query($db, "PRAGMA journal_mode = wal");
+
 // Create tables (when necessary)
 $result = sqlite_query($db, "SELECT name FROM sqlite_master WHERE type='table' AND name='" . TINYIB_DBACCOUNTS . "'");
 if (sqlite_num_rows($result) == 0) {

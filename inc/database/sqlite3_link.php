@@ -12,7 +12,11 @@ if (!$db) {
 	fancyDie("Could not connect to database: " . $db->lastErrorMsg());
 }
 
+// Set lock timeout
 $db->busyTimeout(60000);
+
+// Set journal mode to write-ahead logging
+$db->exec("PRAGMA journal_mode = wal");
 
 // Create tables (when necessary)
 $result = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name='" . TINYIB_DBACCOUNTS . "'");
